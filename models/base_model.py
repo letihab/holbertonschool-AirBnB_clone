@@ -2,7 +2,7 @@
 """class basemodel"""
 import uuid
 from datetime import datetime
-import storage from models
+from models import storage
 
 
 class BaseModel:
@@ -15,9 +15,9 @@ class BaseModel:
                 if key == "created_at":
                     self.__dict__["created_at"] = datetime.strptime(
                         kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
-                elif key == "update_at":
+                elif key == "updated_at":
                     self.__dict__["updated_at"] = datetime.strptime(
-                        kwargs["update_at"], "%Y-%m-%dT%H:%M:%S.%f" )
+                        kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f" )
                 else:
                     self.__dict__[key] = kwargs[key]
         else:
