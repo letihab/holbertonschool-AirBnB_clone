@@ -2,7 +2,10 @@
 """class for serialization and deserialization"""
 import json
 import os
+from models.base_model import BaseModel
 
+
+class_dict = {"BaseModel" : BaseModel}
 
 class FileStorage :
     """class that serializes instances to a JSON file
