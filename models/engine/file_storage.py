@@ -45,6 +45,6 @@ class FileStorage :
                     obj_class = class_dict.get(class_name)
                     if obj_class:
                         obj = obj_class(**value)
-                    type(self).__objects[key] = obj
+                        type(self).__objects[key] = obj
         except FileNotFoundError:
             pass
