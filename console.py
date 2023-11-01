@@ -7,6 +7,7 @@ from models import storage
 from models.base_model import BaseModel
 
 class HBNBCommand(cmd.Cmd):
+    """ definition of HBnB console"""
     prompt = "(hbnb) "
 
     def do_quit(self, arg):
