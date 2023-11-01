@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """class Basemodel that defines
-all common attributes/methods for 
+all common attributes/methods for
 other classes
 """
 
@@ -23,7 +23,7 @@ class BaseModel:
 
         return "[{}] ({}) {}".\
             format(type(self).__name__, self.id, self.__dict__)
-    
+
     def save(self):
         """updates the public instance attribute updated_at"""
 
