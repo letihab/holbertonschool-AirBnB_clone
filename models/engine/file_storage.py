@@ -3,15 +3,14 @@
 Serializes instances to a JSON file and
 deserializes JSON file to instances.
 """
-
-
 import json
 import os
 from models.base_model import BaseModel
 
 
 class FileStorage:
-    """The file storage engine class, that is;
+    """
+    The file storage engine class, that is;
     A class that serialize and deserialize instances to a JSON file
     """
 
