@@ -4,7 +4,6 @@
 
 import cmd
 
-
 class HBNBCommand(cmd.Cmd):
     """definition of console"""
     prompt = "(hbnb) "
