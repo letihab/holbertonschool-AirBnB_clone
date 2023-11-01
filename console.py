@@ -29,10 +29,7 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_create(self, arg):
-        """
-        Create a new instance of BaseModel,
-        save it to the JSON file, and print the id
-        """
+        """Create a new instance, save it to the JSON file, and print the id"""
         args = arg.split()
         if self.check_args(args, 1):
             print("** class name missing **")
@@ -46,10 +43,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_show(self, arg):
-        """
-        Print the string representation of
-        an instance based on the class name and id
-        """
+        """Print the string representation of an instance"""
         args = arg.split()
         if self.check_args(args, 1):
             print("** class name missing **")
@@ -67,10 +61,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, arg):
-        """
-        Delete an instance based on the class name
-        and id and save the change to the JSON file
-        """
+        """Delete an instance"""
         args = arg.split()
         if self.check_args(args, 1):
             print("** class name missing **")
@@ -89,10 +80,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, arg):
-        """
-        Print the string representation of
-        all instances based on the class name or all instances
-        """
+        """Print the string representation of all instances"""
         args = arg.split()
         objects = []
         if not args:
@@ -108,10 +96,7 @@ class HBNBCommand(cmd.Cmd):
             print(objects)
 
     def do_update(self, arg):
-        """
-        Update an instance based on the class name
-        and id by adding or updating an attribute
-        """
+        """Update an instance"""
         args = arg.split()
         if self.check_args(args, 1):
             print("** class name missing **")
@@ -138,9 +123,12 @@ class HBNBCommand(cmd.Cmd):
                 except (NameError, SyntaxError):
                     pass
                 if hasattr(instance, attr_name):
-                    setattr(instance, attr_name, attr_value)
-                    instance.save()
+                    if attr_name not in ["id", "created_at", "updated_at"]:
+                        setattr(instance, attr_name, attr_value)
+                        instance.save()
+                    else:
+                        print("** can't update id, created_at, or updated_at **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-
