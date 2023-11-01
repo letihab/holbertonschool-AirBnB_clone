@@ -6,6 +6,7 @@ import cmd
 from models import storage
 from models.base_model import BaseModel
 
+
 class HBNBCommand(cmd.Cmd):
     """ definition of HBnB console"""
     prompt = "(hbnb) "
@@ -111,6 +112,7 @@ class HBNBCommand(cmd.Cmd):
                     pass
                 setattr(instance, attribute_name, attribute_value)
                 instance.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
