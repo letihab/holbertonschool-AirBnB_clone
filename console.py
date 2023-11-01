@@ -8,6 +8,7 @@ import models
 from datetime import datetime
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -35,7 +36,10 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
-            new_creation = eval(args[0] + '()')
+            if args[0] == "User":
+                new_creation = User()
+            else:
+                new_creation = eval(args[0] + '()')
             models.storage.save()
             print(new_creation.id)
 
