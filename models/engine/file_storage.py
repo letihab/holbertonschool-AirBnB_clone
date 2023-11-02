@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-that serializes instances to a JSON file and
-deserializes JSON file to instances"""
+"""create filestorage for serialization and deserialization"""
 
 
 import json
@@ -46,63 +44,72 @@ class FileStorage:
         from models.review import Review
         from models.state import State
 
-        classes = {"BaseModel": BaseModel,
-                   "User": User,
-                   "State": State,
-                   "City": City,
-                   "Amenity": Amenity,
-                   "Place": Place,
-                   "Review": Review}
-        return classes
+        self.classes = {
+            "BaseModel": BaseModel,
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review,
+        }
+        return self.classes
 
     def reload(self):
         """deserialize the json file to __objects"""
-        from models.base_model import BaseModel
-
-        try:
-            with open(self.__file_path, 'r',  encoding='utf-8') as file:
-                data = json.load(file)
-                for key, value in data.items():
-                    class_name, obj_id = key.split('.')
-                    obj_class = self.classes().get(class_name, BaseModel)
-                    self.__objects[key] = obj_class(**value)
-        except FileNotFoundError:
-            pass
+        if os.path.exists(type(self).__file_path):
+            try:
+                with open(type(self).__file_path, "r") as file:
+                    new_obj = json.load(file)
+                    for key, val in new_obj.items():
+                        class_name = val['__class__']
+                        if class_name in self.classes:
+                            obj = self.classes[class_name](**val)
+                            type(self).__objects[key] = obj
+            except Exception:
+                pass
 
     def attributes(self):
         """Returns the valid attributes and their types for classname"""
         attributes = {
-            "BaseModel":
-                     {"id": str,
-                      "created_at": datetime.datetime,
-                      "updated_at": datetime.datetime},
-            "User":
-                     {"email": str,
-                      "password": str,
-                      "first_name": str,
-                      "last_name": str},
-            "State":
-                     {"name": str},
-            "City":
-                     {"state_id": str,
-                      "name": str},
-            "Amenity":
-                     {"name": str},
-            "Place":
-                     {"city_id": str,
-                      "user_id": str,
-                      "name": str,
-                      "description": str,
-                      "number_rooms": int,
-                      "number_bathrooms": int,
-                      "max_guest": int,
-                      "price_by_night": int,
-                      "latitude": float,
-                      "longitude": float,
-                      "amenity_ids": list},
-            "Review":
-            {"place_id": str,
-                         "user_id": str,
-                         "text": str}
+            "BaseModel": {
+                "id": str,
+                "created_at": datetime,
+                "updated_at": datetime
+            },
+            "User": {
+                "email": str,
+                "password": str,
+                "first_name": str,
+                "last_name": str
+            },
+            "State": {
+                "name": str
+            },
+            "City": {
+                "state_id": str,
+                "name": str
+            },
+            "Amenity": {
+                "name": str
+            },
+            "Place": {
+                "city_id": str,
+                "user_id": str,
+                "name": str,
+                "description": str,
+                "number_rooms": int,
+                "number_bathrooms": int,
+                "max_guest": int,
+                "price_by_night": int,
+                "latitude": float,
+                "longitude": float,
+                "amenity_ids": list
+            },
+            "Review": {
+                "place_id": str,
+                "user_id": str,
+                "text": str
+            }
         }
         return attributes
