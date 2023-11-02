@@ -15,6 +15,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
+
 class HBNBCommand(cmd.Cmd):
     """class that contains the entry point of command interpreter"""
 
@@ -170,6 +171,7 @@ class HBNBCommand(cmd.Cmd):
            press enter an empty line
         '''
         pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
