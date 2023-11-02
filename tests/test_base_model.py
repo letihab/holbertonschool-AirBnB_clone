@@ -36,6 +36,29 @@ class TestBaseModel_instantiation(unittest.TestCase):
         """check if the attribut created_at is the type datetime"""
         self.assertEqual(datetime, type(BaseModel().created_at))
 
+    def test_updated_at_is_public_datetime(self):
+        self.assertEqual(datetime, type(BaseModel().updated_at))
+
+    def test_two_model_unique_id(self):
+        """check if id is unique"""
+        b1 = BaseModel()
+        b2 = BaseModel()
+        self.assertNotEqual(b1.id, b2.id)
+
+    def test_two_models_different_created_at(self):
+        """checks wether the creation timestamps are #"""
+        b1 = BaseModel()
+        sleep(0.05)
+        b2 = BaseModel()
+        self.assertLess(b1.created_at, b2.created_at)
+
+    def test_two_models_different_updated_at(self):
+        b1 = BaseModel()
+        sleep(0.05)
+        b2 = BaseModel()
+        self.assertLess(b1.updated_at, b2.updated_at)
+
+    
 if __name__ == '__main__':
     unittest.main()    
 
