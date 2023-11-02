@@ -8,7 +8,7 @@ from datetime import datetime
 from models.city import City
 from models.base_model import BaseModel
 import uuid
-
+import os
 
 
 class TestCity_instantiation(unittest.TestCase):
@@ -19,7 +19,7 @@ class TestCity_instantiation(unittest.TestCase):
         """Setup the unittest"""
         cls.city = City()
         cls.city.state_id = str(uuid.uuid4())
-        cls.city.name = "St. Petesburg"
+        cls.city.name = "Laval"
 
     @classmethod
     def tearDownClass(cls):
