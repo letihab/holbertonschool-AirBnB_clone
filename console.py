@@ -9,7 +9,11 @@ from datetime import datetime
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
-
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     """class that contains the entry point of command interpreter"""
@@ -45,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, args):
         """
-        Prints the string 
+        Prints the string
         representation of a specific instance"""
         strings = args.split()
         if len(strings) == 0:
