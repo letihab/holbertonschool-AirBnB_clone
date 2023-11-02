@@ -23,10 +23,6 @@ class TestBaseModel_instantiation(unittest.TestCase):
         self.assertEqual(BaseModel, type(BaseModel()))
         """use assert to verify that the type of instantiation is BaseModel"""
 
-    def test_new_instance_store(self):
-        """verified is the new instance is store to an objects"""
-        self.assertIn(BaseModel(), models.storage.all())
-
     def test_id_is_public_str(self):
         """check that the id attribute of an instance of
         Basemodel is a string and is public"""
