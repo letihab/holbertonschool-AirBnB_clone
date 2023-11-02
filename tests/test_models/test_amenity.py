@@ -45,6 +45,11 @@ class TestAmenity(unittest.TestCase):
     def test_attributes_are_string(self):
         self.assertIs(type(self.amenity.name), str)
 
+    def test_doc_constructor(self):
+        """Constructor documentation"""
+        doc = Amenity.__init__.__doc__
+        self.assertGreater(len(doc), 1)
+
     def test_save(self):
         self.amenity.save()
         self.assertNotEqual(self.amenity.created_at, self.amenity.updated_at)
