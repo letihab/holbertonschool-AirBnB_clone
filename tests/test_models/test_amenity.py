@@ -57,6 +57,18 @@ class TestAmenity(unittest.TestCase):
     def test_to_dict(self):
         self.assertTrue('to_dict' in dir(self.amenity))
 
+    def test_str_representation(self):
+        dt = datetime.today()
+        dt_repr = repr(dt)
+        am = Amenity()
+        am.id = "123456"
+        am.created_at = am.updated_at = dt
+        amstr = am.__str__()
+        self.assertIn("[Amenity] (123456)", amstr)
+        self.assertIn("'id': '123456'", amstr)
+        self.assertIn("'created_at': " + dt_repr, amstr)
+        self.assertIn("'updated_at': " + dt_repr, amstr)
+
 
 if __name__ == "__main__":
     unittest.main()
