@@ -7,6 +7,7 @@ import os
 from models.place import Place
 from datetime import datetime
 from time import sleep
+import models
 from models.base_model import BaseModel
 import uuid
 
@@ -209,6 +210,12 @@ class TestPlace(unittest.TestCase):
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
             Place(id=None, created_at=None, updated_at=None)
+
+    def test_no_args_instantiates(self):
+        self.assertEqual(Place, type(Place()))
+
+    def test_new_instance_stored_in_objects(self):
+        self.assertIn(Place(), models.storage.all().values())
 
 
 if __name__ == "__main__":
