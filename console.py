@@ -93,7 +93,8 @@ class HBNBCommand(cmd.Cmd):
         key = self.get_object_key(line)
         if key:
             if len(my_list) > 4:
-                print("Usage: update <class name> <id> <attribute name> \"<attribute value>\"")
+                print("Usage: update <class name> <id> <attribute name>\
+                    \"<attribute value>\"")
             elif len(my_list) == 3:
                 print("** value missing **")
             elif len(my_list) == 2:
