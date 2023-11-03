@@ -6,7 +6,7 @@ import unittest
 import os
 from datetime import datetime
 from time import sleep
-from models import storage
+import models
 from models.review import Review
 from models.base_model import BaseModel
 import uuid
