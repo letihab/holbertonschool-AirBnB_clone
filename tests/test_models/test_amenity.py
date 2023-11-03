@@ -6,7 +6,7 @@ import os
 from models.amenity import Amenity
 from models.base_model import BaseModel
 from datetime import datetime
-from models import storage
+import models
 from time import sleep
 
 class TestAmenity(unittest.TestCase):
